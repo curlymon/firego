@@ -154,7 +154,8 @@ func (fb *Firebase) EqualToValue(value interface{}) *Firebase {
 func escapeString(s string) string {
 	_, errNotInt := strconv.ParseInt(s, 10, 64)
 	_, errNotBool := strconv.ParseBool(s)
-	if errNotInt == nil || errNotBool == nil {
+	_, errNotFloat := strconv.ParseFloat(s, 64)
+	if errNotInt == nil || errNotBool == nil || errNotFloat == nil {
 		// we shouldn't escape bools or ints
 		return s
 	}
